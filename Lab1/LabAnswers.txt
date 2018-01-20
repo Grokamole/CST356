@@ -1,75 +1,55 @@
-###################
-# compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.pdb
-*.dll.config
-*.cache
-*.suo
-# Include dlls if they’re in the NuGet packages directory
-!/packages/*/lib/*.dll
-!/packages/*/lib/*/*.dll
-# Include dlls if they're in the CommonReferences directory
-!*CommonReferences/*.dll
-####################
-# VS Upgrade stuff #
-####################
-UpgradeLog.XML
-_UpgradeReport_Files/
-###############
-# Directories #
-###############
-bin/
-obj/
-TestResults/
-###################
-# Web publish log #
-###################
-*.Publish.xml
-#############
-# Resharper #
-#############
-/_ReSharper.*
-*.ReSharper.*
-############
-# Packages #
-############
-# it’s better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-######################
-# Logs and databases #
-######################
-*.log
-*.sqlite
-# OS generated files #
-######################
-.DS_Store?
-ehthumbs.db
-Icon?
-Thumbs.db
-[Bb]in
-[Oo]bj
-[Tt]est[Rr]esults
-*.suo
-*.user
-*.[Cc]ache
-*[Rr]esharper*
-packages
-NuGet.exe
-_[Ss]cripts
-*.exe
-*.dll
-*.nupkg
-*.ncrunchsolution
-*.dot[Cc]over
+Exercise 1
+----------
+1. Done.
+2. Done.
+3. The About() action for the Home Controller just got called.
+4. Done.
+5. Process of MVC
+    i. The request from the user gets sent to the application through
+         the specified port.
+    ii. The application gets the controller by name
+          (e.g., "/Home/" = HomeController).
+	iii. The application uses the Home controller to use the About
+           ("/About") action.
+	iv. The view's data model for the page is updated so that the
+	      Message section changes to the updated data.
+	v. The page data is sent back to the user's browser where it is
+	     displayed.	
+
+Exercise 2
+----------
+1. The About action (IActionResult) from the controller modifies the
+     view data passed into the "Message" field in the About.cshtml,
+     which then gets sent to the user to display.
+2. The controller is generating the view data which gets passed into the
+     .cshtml pages for user display.
+3. The views to display are in the views directory and match the name of
+     the IActionResult to a similarly named .cshtml page.
+4. The folder hierarchy for views start in the views directory. The
+      controller (e.g., Home) has a folder containing the view .cshtml
+      files it supports with each action mapped to a view.
+5. Done.
+6. Changed message. Done.
+7. Added new message. Done.
+
+Exercise 3
+----------
+1. Done.
+2. Done.
+3. An unhandled exception has occurred because there is no view to send to
+	the web client.
+4. Done.
+5. It is a relatively content-sparse page that says "Index".
+6. Done.
+7. Done.
+8. Shows "person" on the page.
+
+Exercise 4
+----------
+1. Done.
+2. Done.
+
+Complete
+--------
+1. Done.
+2. Done.

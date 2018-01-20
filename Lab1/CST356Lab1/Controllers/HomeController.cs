@@ -17,8 +17,8 @@ namespace CST356Lab1.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            ViewData["Message"] = "\"The time has come\", the walrus said, \"to talk of many things.\"";
+            ViewData["NewMessage"] = "\"Of shoes and ships and sealing wax, Of cabbages and kings.\"";
             return View();
         }
 
