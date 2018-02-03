@@ -1,0 +1,51 @@
+Exercise 1
+----------
+1. Done.
+2. Done.
+3. Done.
+4. Done.
+5.
+5a. Done.
+5b. Done.
+5c. Done.
+5d. Visual Studio dynamically generates the copyright year when the project is created.
+5e. The year is generated on the web server.
+6. Done
+
+Exercise 2
+----------
+1. Done.
+2. Done.
+3. Done.
+4. Done.
+5. Done.
+6. @Html is an HtmlHelper class using Razor syntax. The items that follow the period are methods used to bind view or model data. HtmlHelper generates html depending on these properties.
+*The view knows which model to use for the input fields based on the model passed in to the view by the controller.
+7. Done.
+8. Done and works. Yes, the text in the footer is the same on the Create User page as it is on the Home page.
+This is because the layout for the Create.cshtml page is chosen in the initial Razor syntax block and the rest of
+the page is displayed in the call to @RenderBody. The layout is shared for all pages that call for it.
+9. I don't have a "Back to List" link.
+	Note: I created one as per your code sometime later, and it calls
+an action from the controller (in which case, it calls my ShowUsersList action from the controller).
+
+Exercise 3
+----------
+1. Done.
+2. Done.
+3. The data is defined in the @model syntax at the start of the view which is passed into the view in the controller.
+4. Done.
+5. Done.
+6. Done.
+7. Done.
+
+Exercise 4
+-----------
+1. When setting only Number of Years at School, the id is set, the name and email are blank, the number of years at school matches what I put
+in, and the GPA is 0.
+2. I get the same problems as above.
+Note: I wasn't sure if I was supposed to check validity yet. After adding
+the logic in 3, this now complains if required fields are invalid.
+3. Done.
+4. Done.
+5. Done.
