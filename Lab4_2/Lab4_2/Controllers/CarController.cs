@@ -30,7 +30,7 @@ namespace Lab4_2.Controllers
             context.Cars.Add(car);
             context.SaveChanges();
 
-            return RedirectToAction("ShowCarsList", new { UserID = newCar.UserID });
+            return RedirectToAction("ShowCarsList", new { userID = newCar.UserID });
         }
 
         public ActionResult ShowCarsList(int userID)
@@ -38,6 +38,8 @@ namespace Lab4_2.Controllers
             SubDbContext db = new SubDbContext();
 
             List<CarViewModel> models = new List<CarViewModel>();
+
+            ViewBag.userID = userID;
 
             foreach (Car car in db.Cars)
             {
@@ -58,6 +60,7 @@ namespace Lab4_2.Controllers
             outputCar.ID = inputCar.ID;
             outputCar.Color = inputCar.Color;
             outputCar.LicensePlateNumber = inputCar.LicensePlateNumber;
+            outputCar.UserID = inputCar.UserID;
 
             return outputCar;
         }
@@ -69,7 +72,7 @@ namespace Lab4_2.Controllers
             outputCar.ID = inputCar.ID;
             outputCar.Color = inputCar.Color;
             outputCar.LicensePlateNumber = inputCar.LicensePlateNumber;
-
+            outputCar.UserID = inputCar.UserID;
             return outputCar;
         }
     }
