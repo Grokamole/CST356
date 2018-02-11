@@ -32,6 +32,70 @@ namespace Lab4_2.Controllers
             return RedirectToAction("ShowUsersList");
         }
         
+        public ActionResult Details(int ID)
+        {
+            SubDbContext context = new SubDbContext();
+            User user = context.Users.Find(ID);
+            if (null == user)
+            {
+                return RedirectToAction("ShowUsersList");
+            }
+            UserViewModel userView = MapToUserViewModel(user);
+
+            return View(userView);
+        }
+
+        public ActionResult Delete(int ID)
+        {
+            SubDbContext context = new SubDbContext();
+            User user = context.Users.Find(ID);
+            if (null != user)
+            {
+                context.Users.Remove(user);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("ShowUsersList");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int ID)
+        {
+            SubDbContext context = new SubDbContext();
+            User user = context.Users.Find(ID);
+            if (null == user)
+            {
+                return RedirectToAction("ShowUsersList");
+            }
+
+            return View(MapToUserViewModel(user));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserViewModel userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            SubDbContext context = new SubDbContext();
+            User user = context.Users.Find(userModel.ID);
+            if (null != user)
+            {
+                user.FirstName = userModel.FirstName;
+                user.MiddleName = userModel.MiddleName;
+                user.LastName = userModel.LastName;
+                user.GPA = userModel.GPA;
+                user.YearsInSchool = userModel.YearsInSchool;
+                user.EmailAddress = userModel.EmailAddress;
+                context.SaveChanges();
+            }
+
+
+            return RedirectToAction("ShowUsersList");
+        }
+
         public ActionResult ShowUsersList()
         {
             SubDbContext db = new SubDbContext();

@@ -9,7 +9,7 @@
     <hr />
     @foreach (Lab4_2.Models.View.UserViewModel user in Model)
     {
-        <h3>id: @user.ID Name: @user.FirstName @user.MiddleName @user.LastName Email: @user.EmailAddress Number of Years at School: @user.YearsInSchool GPA: @user.GPA</h3><br />
+        <h3>id: @user.ID Name: @user.FirstName @user.MiddleName @user.LastName Email: @user.EmailAddress Number of Years at School: @user.YearsInSchool GPA: @user.GPA @Html.ActionLink("Edit", "Edit", new { ID = user.ID }), @Html.ActionLink("Details", "Details", new { ID = user.ID }), @Html.ActionLink("Delete", "Delete", new { ID = user.ID }), @Html.ActionLink("Cars", "ShowCarsList", "Car", new { userID = user.ID }, null)</h3><br />
         <hr />
     }
 </div>
