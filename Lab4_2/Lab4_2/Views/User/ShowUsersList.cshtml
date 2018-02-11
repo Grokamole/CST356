@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Lab4_2.Models.View.UserViewModel>
+@{
+    ViewData["Title"] = "Show Users List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Show Users List</h2>
+<div style="white-space: pre-wrap; font-family:monospace;">
+    <hr />
+    @foreach (Lab4_2.Models.View.UserViewModel user in Model)
+    {
+        <h3>id: @user.ID Name: @user.FirstName @user.MiddleName @user.LastName Email: @user.EmailAddress Number of Years at School: @user.YearsInSchool GPA: @user.GPA</h3><br />
+        <hr />
+    }
+</div>
