@@ -1,0 +1,55 @@
+Exercise 1
+----------
+1. Done.
+2. Done.
+3. Done.
+4. Done.
+5. Done.
+6. Done.
+7. Done.
+8. Done.
+
+Exercise 2
+----------
+1. Done.
+2. Done.
+3. Done.
+4. Done.
+
+Exercise 3
+----------
+1. Done.
+2. Done.
+3.1. Done.
+3.2. Done.
+3.3. Done.
+3.4. Done.
+3.5. Done.
+4. Done.
+
+Exercise 4
+----------
+1. Shows colored text if the color string matches.
+2. Done.
+3. Done.
+4. Done.
+5.
+Dependency injection is used for placing a parameter into a class in a constructor or method instead of having the class "new up" the dependency internally.
+It is beneficial because it helps keep dependent code implementation separate and helps to facilitate testing (like unit testing).
+
+Exercise 5
+----------
+1. Done.
+2.1. Done.
+2.2. Done.
+2.3. Done.
+3. Done.
+4. Done. Yes they succeeded.
+5. Broken. Test failed. Refixed. Celebrated.
+6.
+Unit tests are isolated tests that work on units (classes and methods) and are used to verify functionality of those units.
+They are beneficial when working on features in those units to make sure you didn't break anything when modifying or refactoring code, or
+when you need to determine that those features work in the first place.
+
+Extra Credit
+------------
