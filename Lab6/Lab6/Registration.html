@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="Styles/app.css" />
+    <title>Registration</title>
+</head>
+<body>
+    <header>Appname</header>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="help.html">Help</a>
+    </nav>
+    <form>
+        <p class="mysecondcssclass">
+            <label for="firstname">First Name:</label><br />
+            <input type="text" name="firstname" maxlength="10" />
+        </p>
+        <p class="mysecondcssclass">
+            <label for="lastname">Last Name:</label><br />
+            <input type="text" name="lastname" maxlength="15" />
+        </p>
+        <p class="mysecondcssclass">
+            <label for="age">Age:</label><br />
+            <input type="number" name="age" />
+        </p>
+        <p class="mysecondcssclass">
+            <label for="yearinschool">Year in School:</label><br />
+            <input type="radio" name="yearinschool" value="freshman" checked="checked"/>Freshman<br />
+            <input type="radio" name="yearinschool" value="sophomore" />Sophomore<br />
+            <input type="radio" name="yearinschool" value="junior" />Junior<br />
+            <input type="radio" name="yearinschool" value="senior" />Senior
+        </p>
+        <p class="mysecondcssclass">
+            <button onclick="getValues(); return false;">Register</button>
+        </p>
+        <p class="mysecondcssclass" id="schoolvalues">
+        </p>
+    </form>
+    <script src="scripts/app.js">
+    </script>
+    <footer><hr />Footer text. Just do it. &copy;2018.</footer>
+</body>
+</html>
