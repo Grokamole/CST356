@@ -1,0 +1,16 @@
+﻿@model  Lab7.Models.View.UserViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<hr />
+<div style="white-space: pre-wrap; font-family:monospace;">
+    <h3>@Html.DisplayNameFor(model => model.ID): @Html.DisplayFor(model => model.ID) Name: @Html.DisplayFor(model => @model.FirstName) @Html.DisplayFor(model => @model.MiddleName) @Html.DisplayFor(model => @model.LastName) @Html.DisplayNameFor(model => @model.EmailAddress): @Html.DisplayFor(model => @model.EmailAddress) @Html.DisplayNameFor(model => @model.YearsInSchool): @Html.DisplayFor(model => @model.YearsInSchool) @Html.DisplayNameFor(model => @model.GPA): @Html.DisplayFor(model => @model.GPA)</h3><br />
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { ID = Model.ID }) |
+    @Html.ActionLink("Show Users List", "ShowUsersList")
+</p>
