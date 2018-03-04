@@ -10,7 +10,7 @@
     @Html.ActionLink("Create", "Create", new { userID = ViewBag.userID }, new { @class = "btn btn-default" })
 </p>
 <div style="white-space: pre-wrap; font-family:monospace;">
-    <table class="table-striped table-bordered">
+    <table class="table-striped table-bordered table-hover" id="cartable">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.ID)</th>
@@ -21,10 +21,10 @@
         </thead>
         @foreach (Lab7.Models.View.CarViewModel car in Model)
         {
-            <tr>
+            <tr class="carrow">
                 <td>@Html.DisplayFor(model => car.ID)</td>
                 <td>@Html.DisplayFor(model => car.Color)</td>
-                <td>@Html.DisplayFor(model => car.LicensePlateNumber)</td>
+                <td class="platenum">@Html.DisplayFor(model => car.LicensePlateNumber)</td>
                 <td>@Html.ActionLink("Delete", "Delete", new { ID = car.ID, userID = car.UserID }, new { @class = "btn btn-default" }) | @Html.ActionLink("Details", "Details", new { ID = car.ID }, new { @class = "btn btn-default" }) | @Html.ActionLink("Edit", "Edit", new { ID = car.ID }, new { @class = "btn btn-default" })</td>
             </tr>
         }
@@ -40,12 +40,33 @@
 
 <div>
     <p>
+        <button type="button" class="btn btn-default" id="showtable">Show Table</button>
+        <button type="button" class="btn btn-default" id="hidetable">Hide Table</button>
+    </p>
+</div>
+
+<div id="theid">
+
+</div>
+
+<div>
+    <p>
         @Html.ActionLink("Show Cars List (by color)", "ShowCarsListFilterColor", new { userID = ViewBag.userID }, new { @class = "btn btn-default" })<br />
-        @Html.ActionLink("User Details", "Details", "User", new { ID = (int)ViewBag.userID }, new { @class = "btn btn-default" })<br/>
+        @Html.ActionLink("User Details", "Details", "User", new { ID = (int)ViewBag.userID }, new { @class = "btn btn-default" })
     </p>
 </div>
 
 @section scripts {
     <script>
+        $("#hidetable").click(function () {
+                $("#cartable").hide();
+            });
+        $("#showtable").click(function () {
+                $("#cartable").show();
+            });
+        $(".carrow").click(function () {
+                var value = $(this).find('.platenum').text().trim();
+                document.getElementById('theid').innerHTML = "Selected plate number: " + value;
+            });
     </script>
 }
