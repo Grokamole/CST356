@@ -1,0 +1,18 @@
+﻿@model  Lab7.Models.View.CarViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<hr />
+<div style="white-space: pre-wrap; font-family:monospace;">
+    <h3>@Html.DisplayNameFor(model => model.ID): @Html.DisplayFor(model => model.ID) @Html.DisplayNameFor(model => model.Color): @(new HtmlString(Model.Color)) @Html.DisplayNameFor(model => @model.LicensePlateNumber): @Html.DisplayFor(model => @model.LicensePlateNumber) @Html.DisplayNameFor(model => @model.UserID): @Html.DisplayFor(model => @model.UserID)</h3><br />
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { ID = Model.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { ID = Model.ID, userID = Model.UserID }) |
+    @Html.ActionLink("User", "Details", "User", new { ID = Model.UserID }, null) |
+    @Html.ActionLink("Show Cars List", "ShowCarsList", new { userID = Model.UserID })
+</p>

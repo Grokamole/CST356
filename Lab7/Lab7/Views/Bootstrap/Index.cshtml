@@ -1,0 +1,70 @@
+﻿<div class="jumbotron text-center">
+    <h1>My First Bootstrap Page</h1>
+    <p>Resize this responsive page to see the effect!</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>6a</h3>
+            <p>Describe the page layout you see.</p>
+            <hr />
+            <p>
+                The page has the familiar nav bar at the top. There is a large
+                centered page title at the top. Following that are three columns with
+                the text I'm writing. The centered page title is placed inside a
+                large, light gray box.
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <h3>6b</h3>
+            <p>Describe what happens as you resize the page.</p>
+            <hr />
+            <p>
+                As I resize the page, the columns collide into each other and
+                eventually turn into columns. The text in the centered title starts
+                to move into multiple lines and shrinks the more the page shrinks.
+                The nav bar at the top turns into a dropdown button containing the
+                nav bar links. <mark>HTML does not, by default do a good job of
+                this.</mark>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <h3>6c</h3>
+            <p>
+                Using w3schools <b>Getting Started</b> and <b>Grid Basic</b>
+                sections, discover what the CSS classes on the page are doing and
+                describe their use.
+            </p>
+            <hr />
+            <p>
+                <blockquote>
+                    The .container class provides a responsive fixed width
+                    container.
+                    <footer>
+                        --From the <a href="https://w3schools.com">w3schools</a>
+                        website
+                    </footer>
+                </blockquote>
+                This class is used for the parent div below the centered title area
+                (including this text). This changes max-width at each breakpoint.
+            </p>
+            <p>
+                The .row class is used to hold columns. Using Bootstrap's grid
+                system, this "allows up to 12 columns across the page." These
+                12 columns are equal width columns.
+            </p>
+            <p>
+                The .col-sm-4 class contains three different parts in the class name.
+                <dl>
+                    <dt>.col</dt>
+                    <dd>designates that it is a column.</dd>
+                    <dt>-sm</dt>
+                    <dd>designates that it is for tablets (width is &gt;= 768px).</dd>
+                    <dt>-4</dt>
+                    <dd>designates how much of the 12 column spacing to use.</dd>
+                </dl>
+            </p>
+        </div>
+    </div>
+</div>

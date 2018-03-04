@@ -1,14 +1,17 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using Lab7.Data.Entities;
+﻿using System.Web.Mvc;
 using Lab7.Models.View;
-using Lab7.Data;
+using Lab7.Services;
 
 namespace Lab7.Controllers
 {
     public class UserController : Controller
     {
+        private IUserService service;
+        public UserController(IUserService service)
+        {
+            this.service = service;
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -23,52 +26,38 @@ namespace Lab7.Controllers
                 return View();
             }
 
-            User user = MapToUser(newUser);
-
-            SubDbContext context = new SubDbContext();
-            context.Users.Add(user);
-            context.SaveChanges();
+            service.SaveUser(newUser);
 
             return RedirectToAction("ShowUsersList");
         }
         
         public ActionResult Details(int ID)
         {
-            SubDbContext context = new SubDbContext();
-            User user = context.Users.Find(ID);
+            UserViewModel user = service.GetUser(ID);
             if (null == user)
             {
                 return RedirectToAction("ShowUsersList");
             }
-            UserViewModel userView = MapToUserViewModel(user);
 
-            return View(userView);
+            return View(user);
         }
 
         public ActionResult Delete(int ID)
         {
-            SubDbContext context = new SubDbContext();
-            User user = context.Users.Find(ID);
-            if (null != user)
-            {
-                context.Users.Remove(user);
-                context.SaveChanges();
-            }
-
+            service.DeleteUser(ID);
             return RedirectToAction("ShowUsersList");
         }
 
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            SubDbContext context = new SubDbContext();
-            User user = context.Users.Find(ID);
+            UserViewModel user = service.GetUser(ID);
             if (null == user)
             {
                 return RedirectToAction("ShowUsersList");
             }
 
-            return View(MapToUserViewModel(user));
+            return View(user);
         }
 
         [HttpPost]
@@ -79,8 +68,8 @@ namespace Lab7.Controllers
                 return View();
             }
 
-            SubDbContext context = new SubDbContext();
-            User user = context.Users.Find(userModel.ID);
+            UserViewModel user = service.GetUser(userModel.ID);
+
             if (null != user)
             {
                 user.FirstName = userModel.FirstName;
@@ -89,56 +78,15 @@ namespace Lab7.Controllers
                 user.GPA = userModel.GPA;
                 user.YearsInSchool = userModel.YearsInSchool;
                 user.EmailAddress = userModel.EmailAddress;
-                context.SaveChanges();
+                service.UpdateUser(user);
             }
-
 
             return RedirectToAction("ShowUsersList");
         }
 
         public ActionResult ShowUsersList()
         {
-            SubDbContext db = new SubDbContext();
-
-            List<UserViewModel> models = new List<UserViewModel>();
-
-            foreach(User user in db.Users)
-            {
-                UserViewModel model = MapToUserViewModel(user);
-                models.Add(model);
-            }
-
-            return View(models);
-        }
-
-        private User MapToUser(UserViewModel inputUser)
-        {
-            User outputUser = new User();
-
-            outputUser.EmailAddress = inputUser.EmailAddress;
-            outputUser.FirstName = inputUser.FirstName;
-            outputUser.GPA = inputUser.GPA;
-            outputUser.ID = inputUser.ID;
-            outputUser.LastName = inputUser.LastName;
-            outputUser.MiddleName = inputUser.MiddleName;
-            outputUser.YearsInSchool = inputUser.YearsInSchool;
-
-            return outputUser;
-        }
-
-        private UserViewModel MapToUserViewModel(User inputUser)
-        {
-            UserViewModel outputUser = new UserViewModel();
-
-            outputUser.EmailAddress = inputUser.EmailAddress;
-            outputUser.FirstName = inputUser.FirstName;
-            outputUser.GPA = inputUser.GPA;
-            outputUser.ID = inputUser.ID;
-            outputUser.LastName = inputUser.LastName;
-            outputUser.MiddleName = inputUser.MiddleName;
-            outputUser.YearsInSchool = inputUser.YearsInSchool;
-
-            return outputUser;
+            return View(service.GetAllUsers());
         }
 
         /* public ActionResult Error()

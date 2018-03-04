@@ -3,20 +3,49 @@
     ViewData["Title"] = "Show Cars List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Show Cars List</h2>
+<div class="well">
+    <h2>Show Cars List</h2>
+</div>
 <p>
-    @Html.ActionLink("Create", "Create", new { userID = ViewBag.userID })
+    @Html.ActionLink("Create", "Create", new { userID = ViewBag.userID }, new { @class = "btn btn-default" })
 </p>
 <div style="white-space: pre-wrap; font-family:monospace;">
-    <hr />
-    @foreach (Lab7.Models.View.CarViewModel car in Model)
+    <table class="table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ID)</th>
+                <th>@Html.DisplayNameFor(model => model.Color)</th>
+                <th>@Html.DisplayNameFor(model => model.LicensePlateNumber)</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        @foreach (Lab7.Models.View.CarViewModel car in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => car.ID)</td>
+                <td>@Html.DisplayFor(model => car.Color)</td>
+                <td>@Html.DisplayFor(model => car.LicensePlateNumber)</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { ID = car.ID, userID = car.UserID }, new { @class = "btn btn-default" }) | @Html.ActionLink("Details", "Details", new { ID = car.ID }, new { @class = "btn btn-default" }) | @Html.ActionLink("Edit", "Edit", new { ID = car.ID }, new { @class = "btn btn-default" })</td>
+            </tr>
+        }
+    </table>
+    @if (Model.Count() > 2)
     {
-        <h3>@Html.DisplayNameFor(model => model.ID): @Html.DisplayFor(model => car.ID) @Html.DisplayNameFor(model => model.Color): @Html.DisplayFor(model => car.Color) @Html.DisplayNameFor(model => model.LicensePlateNumber): @Html.DisplayFor(model => car.LicensePlateNumber)</h3><br />
-        <hr />
+        <div class="alert alert-warning alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Number of cars exceeds 2. You must be financially well off.
+        </div>
     }
 </div>
 
 <div>
-    @Html.ActionLink("User Details", "Details", "User", new { ID = (int)ViewBag.userID }, null)
+    <p>
+        @Html.ActionLink("Show Cars List (by color)", "ShowCarsListFilterColor", new { userID = ViewBag.userID }, new { @class = "btn btn-default" })<br />
+        @Html.ActionLink("User Details", "Details", "User", new { ID = (int)ViewBag.userID }, new { @class = "btn btn-default" })<br/>
+    </p>
 </div>
+
+@section scripts {
+    <script>
+    </script>
+}

@@ -1,13 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Lab7.Data.Entities;
+﻿using System.Web.Mvc;
 using Lab7.Models.View;
-using Lab7.Data;
+using Lab7.Services;
+using System;
+using System.Linq;
+using System.Data.Entity;
 
 namespace Lab7.Controllers
 {
     public class CarController : Controller
     {
+        private readonly ICarService service;        
+        public CarController(ICarService service)
+        {
+            this.service = service;
+        }
+
         [HttpGet]
         public ActionResult Create(int userID)
         {
@@ -24,56 +31,74 @@ namespace Lab7.Controllers
                 return View();
             }
 
-            Car car = MapToCar(newCar);
-
-            SubDbContext context = new SubDbContext();
-            context.Cars.Add(car);
-            context.SaveChanges();
+            service.SaveCar(newCar);
 
             return RedirectToAction("ShowCarsList", new { userID = newCar.UserID });
         }
 
-        public ActionResult ShowCarsList(int userID)
+        public ActionResult Details(int ID)
         {
-            SubDbContext db = new SubDbContext();
-
-            List<CarViewModel> models = new List<CarViewModel>();
-
-            ViewBag.userID = userID;
-
-            foreach (Car car in db.Cars)
+            CarViewModel car = service.GetCarDetails(ID);
+            if (null == car)
             {
-                if (car.UserID == userID)
-                {
-                    CarViewModel model = MapToCarViewModel(car);
-                    models.Add(model);
-                }
+                return RedirectToAction("ShowCarsList");
+            }
+            return View(car);
+        }
+
+        public ActionResult Delete(int ID, int userID)
+        {
+            service.DeleteCar(ID);
+            return RedirectToAction("ShowCarsList", new { userID });
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int ID)
+        {
+            CarViewModel car = service.GetCar(ID);
+            if (null == car)
+            {
+                return RedirectToAction("ShowCarsList");
             }
 
-            return View(models);
+            return View(car);
         }
 
-        private Car MapToCar(CarViewModel inputCar)
+        [HttpPost]
+        public ActionResult Edit(CarViewModel carModel)
         {
-            Car outputCar = new Car();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
 
-            outputCar.ID = inputCar.ID;
-            outputCar.Color = inputCar.Color;
-            outputCar.LicensePlateNumber = inputCar.LicensePlateNumber;
-            outputCar.UserID = inputCar.UserID;
+            CarViewModel car = service.GetCar(carModel.ID);
 
-            return outputCar;
+            if (null != car)
+            {
+                car.Color = carModel.Color;
+                car.ID = carModel.ID;
+                car.LicensePlateNumber = carModel.LicensePlateNumber;
+                service.UpdateCar(car);
+            }
+
+            return RedirectToAction("ShowCarsList", new { userID = carModel.UserID });
         }
 
-        private CarViewModel MapToCarViewModel(Car inputCar)
+        public ActionResult ShowCarsList(int userID)
         {
-            CarViewModel outputCar = new CarViewModel();
+            ViewBag.userID = userID;
+            return View(service.GetCarsForUser(userID));
+        }
 
-            outputCar.ID = inputCar.ID;
-            outputCar.Color = inputCar.Color;
-            outputCar.LicensePlateNumber = inputCar.LicensePlateNumber;
-            outputCar.UserID = inputCar.UserID;
-            return outputCar;
+        public ActionResult ShowCarsListFilterColor(int userID, String colorString)
+        {
+            ViewBag.userID = userID;
+            if (!String.IsNullOrEmpty(colorString))
+            {
+                return View(service.GetCarsForUserByColor(userID, colorString));
+            }
+            return View(service.GetCarsForUser(userID));
         }
     }
 }
