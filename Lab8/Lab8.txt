@@ -1,58 +1,64 @@
 Joseph Miller
 Exercise 1
 ----------
-1.
-2.
-3.
-4.
+1. Done
+2. Done
+3. Done
+4. Done
 
 Exercise 2
 ----------
-1.
-2.
-3.
-4.
+1. Done
+2. Done
+3. Done
+4. Done
 
 Exercise 3
 ----------
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
+1. Done.
+2. Done.
+3. Done.
+4. Done.
+5. Done.
+6. Done.
+7. Done.
+8. Done.
+9. Done.
 
 Exercise 4
 ----------
-1.
-2.
-3.
-4.
-5.
-6.
+1. Done.
+2. Done.
+3. Done.
+4. Done.
+5. Done.
+6. Done.
 
 Exercise 5
 ----------
-1.
-2.
-3.
-4.
-5.
-6.
+1. Done.
+2. Done.
+3. Done.
+4. Done.
+5. Done.
+6. Done.
+Yeah, the login page. Had to close VS and reload for it to work, but it works now.
 
 Exercise 6
 ----------
-1.
-2.
-3.
-4.
+1. The password must be at least 6 characters long.
+2. Done.
+3. Done.
+4. Done.
+This didn't work initially. I had to change a line in AccountController.cs from
+var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+to
+var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+Now it works.
 
 Exercise 7
 ----------
-1.
+1. 
 
 Exercise 8 (Extra Credit)
 -------------------------

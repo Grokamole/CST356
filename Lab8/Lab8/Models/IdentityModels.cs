@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Lab8.Data.Entities;
 
 namespace Lab8.Models
 {
@@ -18,16 +19,30 @@ namespace Lab8.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class AppDbInitializer : DropCreateDatabaseIfModelChanges<SubDbContext>
     {
-        public ApplicationDbContext()
+        // intentionally left blank
+    }
+
+    public class SubDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public SubDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            return new ApplicationDbContext();
+            Database.SetInitializer(new AppDbInitializer());
+            base.OnModelCreating(modelBuilder);
         }
+
+        public static SubDbContext Create()
+        {
+            return new SubDbContext();
+        }
+
+        public DbSet<User> Userset { get; set; }
+        public DbSet<Car> Cars { get; set; }
     }
 }
