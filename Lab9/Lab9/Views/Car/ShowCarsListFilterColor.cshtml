@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Lab9.Models.View.CarViewModel>
+@{
+    ViewData["Title"] = "Show Cars List (filter by color)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Show Cars List (filter by color)</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Filter by color: @Html.TextBox("ColorString");
+        <input type="submit" value="Filter" />
+    </p>
+}
+<p>
+    @Html.ActionLink("Create", "Create", new { userID = ViewBag.userID }) | @Html.ActionLink("User", "Details", "User", new { id = ViewBag.userID }, null)
+</p>
+<div style="white-space: pre-wrap; font-family:monospace;">
+    <hr />
+    @foreach (Lab9.Models.View.CarViewModel car in Model)
+    {
+        <h3>@Html.DisplayNameFor(model => model.ID): @Html.DisplayFor(model => car.ID) @Html.DisplayNameFor(model => model.Color): @Html.DisplayFor(model => car.Color) @Html.DisplayNameFor(model => model.LicensePlateNumber): @Html.DisplayFor(model => car.LicensePlateNumber) | @Html.ActionLink("Details", "Details", new { ID = car.ID }) | @Html.ActionLink("Delete", "Delete", new { ID = car.ID, userID = car.UserID })</h3><br />
+        <hr />
+    }
+</div>
